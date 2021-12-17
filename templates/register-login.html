@@ -1,0 +1,120 @@
+{% extends 'design.html' %} {% block content %}
+{% if register %}
+<form action="{{ url_for('register') }}" method="POST">
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Sing Up Card</h5>
+            <p class="card-text">Fields with " * " are mandatary</p>
+            <div class="form-group">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span> {{ message }} </span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %
+                <label class="form-label" for="exampleFormControlTextarea1"
+                    >* Username:</label
+                >
+                <input
+                    class="form-control"
+                    type="text"
+                    id="exampleFormControlTextarea1"
+                    rows="1"
+                    name="username"
+                    placeholder="Username"
+                    required
+                    autofocus
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="exampleFormControlTextarea2"
+                    >* Password: (max 20 chars)</label
+                >
+                <input
+                    type="password"
+                    class="form-control"
+                    id="exampleFormControlTextarea2"
+                    rows="1"
+                    name="password"
+                    placeholder="Password"
+                    minlength="5"
+                    maxlength="20"
+                    required
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="exampleFormControlTextarea2"
+                    >* Confirm Password: </label
+                >
+                <input
+                    type="password"
+                    class="form-control"
+                    id="exampleFormControlTextarea2"
+                    rows="1"
+                    name="password"
+                    placeholder="Password"
+                    minlength="5"
+                    maxlength="20"
+                    required
+                />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="card-footer text-muted">
+            ! ! ! We will never share information about your password or email
+            with anyone ! ! !
+        </div>
+    </div>
+</form>
+
+{% else %}
+
+<form action="{{ url_for('login') }}" method="POST">
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Login Card</h5>
+            <p class="card-text">Fields with " * " are mandatary</p>
+            <div class="form-group">
+                <label class="form-label" for="exampleFormControlTextarea1"
+                    >* Username:</label
+                >
+                <input
+                    class="form-control"
+                    type="text"
+                    id="exampleFormControlTextarea1"
+                    rows="1"
+                    name="username"
+                    placeholder="Username"
+                    required
+                    autofocus
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="exampleFormControlTextarea2"
+                    >* Password:</label
+                >
+                <input
+                    type="password"
+                    class="form-control"
+                    id="exampleFormControlTextarea2"
+                    rows="1"
+                    name="password"
+                    placeholder="Password"
+                    minlength="5"
+                    maxlength="20"
+                    required
+                />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="card-footer text-muted">
+            ! ! ! We will never share information about your password or email
+            with anyone ! ! !
+        </div>
+    </div>
+</form>
+{% endblock %}
