@@ -38,8 +38,13 @@
             <li><a href="#about">about</a></li>
             <li><a href="#review">review</a></li>
             <li><a href="#contact">contact</a></li>
+            {% if session.username %}
+            <li><a href="{{url_for('login')}}">logged in as {{session.username}}</a></li>
+            <li><a href="{{url_for('logout')}}">log out</a></li>
+            {% else %}
             <li><a href="{{url_for('login')}}">log in</a></li>
             <li><a href="{{url_for('register')}}">register</a></li>
+            {% endif %}
         </ul>
     </nav>
 
