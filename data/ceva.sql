@@ -11,7 +11,8 @@ CREATE TABLE doctors(
     specialization text DEFAULT '',
     contact varchar NOT NULL,
     email varchar UNIQUE,
-    username text DEFAULT ''
+    username text DEFAULT '',
+    p_id integer
 );
 
 CREATE TABLE patients(
@@ -28,7 +29,7 @@ CREATE TABLE patients(
     region varchar,
     disease varchar DEFAULT '',
     surgery varchar DEFAULT '',
-    email varchar UNIQUE,
+    email varchar UNIQUE
 );
 
 CREATE TABLE disease(

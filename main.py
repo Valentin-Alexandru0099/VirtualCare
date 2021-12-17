@@ -88,7 +88,9 @@ def user_page(user_id):
 
 @app.route("/doctor/<int:doctor_id>", methods=["POST", "GET"])
 def doctor_page(doctor_id):
-    return render_template("doctor_page.html", doctor_id=doctor_id)
+    patients = queries.doctor_appointments(doctor_id)
+    print(patients)
+    return render_template("doctor_page.html", doctor_id=doctor_id, patients=patients)
 
 
 if __name__ == "__main__":

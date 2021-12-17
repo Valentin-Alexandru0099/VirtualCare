@@ -59,3 +59,10 @@ def edit_patient(cursor, data):
     WHERE id=%(user_id)s
     """
     cursor.execute(querie, data)
+
+@database_connection.connection_handler
+def doctor_appointments(cursor, doctor_id):
+    querie = """SELECT doctors.name, patients.name, patients.id as patientID, doctors.p_id as doctorID
+                FROM doctors
+                JOIN patients on patients.id = doctors.p_id"""
+    cursor.execute(querie, doctor_id)
