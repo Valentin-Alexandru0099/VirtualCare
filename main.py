@@ -68,22 +68,27 @@ def user_page(user_id):
     user = queries.get_user(user_id)
     if request.method == "POST":
         data = {
-            "name":request.form["name"],
-            "age":request.form["age"],
-            "surname":request.form["surname"],
-            "contact":request.form["contact"],
-            "adress_line":request.form["adress_line"],
-            "gender":request.form["gender"],
-            "height":request.form["height"],
-            "weight":request.form["weight"],
-            "country":request.form["country"],
-            "region":request.form["region"],
-            "disease":request.form["disease"],
-            "surgery":request.form["surgeries"],
-            "user_id":user_id
+            "name": request.form["name"],
+            "age": request.form["age"],
+            "surname": request.form["surname"],
+            "contact": request.form["contact"],
+            "adress_line": request.form["adress_line"],
+            "gender": request.form["gender"],
+            "height": request.form["height"],
+            "weight": request.form["weight"],
+            "country": request.form["country"],
+            "region": request.form["region"],
+            "disease": request.form["disease"],
+            "surgery": request.form["surgeries"],
+            "user_id": user_id,
         }
         queries.edit_patient(data)
     return render_template("user_page.html", user=user)
+
+
+@app.route("/doctor/<int:doctor_id>", methods=["POST", "GET"])
+def doctor_page(doctor_id):
+    return render_template("doctor_page.html", doctor_id=doctor_id)
 
 
 if __name__ == "__main__":

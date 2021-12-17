@@ -44,7 +44,11 @@
                     {% if session.username %}
                     <li><a href="#contact">appointment</a></li>
                     {% endif %}
-                    {% if session.username %}
+                    {% if session.doctor %}
+                    <li><a href="{{url_for('doctor_page', doctor_id=session.id)}}">logged in as {{session.username}}</a>
+                    </li>
+                    <li><a href="{{url_for('logout')}}">log out</a></li>
+                    {% elif session.username %}
                     <li><a href="{{url_for('user_page', user_id=session.id)}}">logged in as {{session.username}}</a>
                     </li>
                     <li><a href="{{url_for('logout')}}">log out</a></li>
