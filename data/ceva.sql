@@ -17,11 +17,18 @@ CREATE TABLE doctors(
 CREATE TABLE patients(
     id serial PRIMARY KEY NOT NULL,
     name text DEFAULT '',
-    contact varchar NOT NULL,
     age integer,
-    disease varchar NOT NULL,
-    surgery varchar NOT NULL,
-    email varchar UNIQUE
+    surname varchar,
+    contact varchar DEFAULT '',
+    adress_line varchar,
+    gender text,
+    height float,
+    weight float,
+    country varchar,
+    region varchar,
+    disease varchar DEFAULT '',
+    surgery varchar DEFAULT '',
+    email varchar UNIQUE,
 );
 
 CREATE TABLE disease(
@@ -29,6 +36,8 @@ CREATE TABLE disease(
     name text DEFAULT '',
     detail text DEFAULT ''
 );
+
+
 
 INSERT INTO disease (id, name, detail) VALUES (1, 'Thrombosis', 'A vascular disease caused by the formation of a blood clot inside a blood vessel, obstructing the flow of blood through the circulatory system.');
 INSERT INTO disease (id, name, detail) VALUES (2, 'Depression', 'Depression (also known as major depression or major depressive disorder) is a psychiatric disorder that affects mood, behavior, and overall health. It causes prolonged feelings of sadness, emptiness, or hopelessness, and a loss of interest in activities that were once enjoyed. People with depression may also have changes in appetite (leading to overeating or not eating enough), changes in sleeping patterns (sleeping too much or not being able to sleep), loss of energy, and difficulty concentrating.');

@@ -20,6 +20,8 @@
     <!-- custom css file link  -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='user_page.css')}}">
+
 </head>
 <body>
     
@@ -41,7 +43,7 @@
             <li><a href="#contact">appointment</a></li>
             {% endif %}
             {% if session.username %}
-            <li><a href="{{url_for('login')}}">logged in as {{session.username}}</a></li>
+            <li><a href="{{url_for('user_page', user_id=session.id)}}">logged in as {{session.username}}</a></li>
             <li><a href="{{url_for('logout')}}">log out</a></li>
             {% else %}
             <li><a href="{{url_for('login')}}">log in</a></li>
@@ -59,7 +61,7 @@
 <!-- header section ends  -->
 
 <!-- home section starts  -->
-
+{% block content %}
 <section class="home" id="home">
 
 <div class="container">
@@ -407,7 +409,7 @@
     <h1 class="credit text-center mx-auto">created by <span>ACA Team</span> | all rights reserved.</h1>
 
 </section>
-
+{% endblock %}
 <!-- footer section ends -->
 
 
