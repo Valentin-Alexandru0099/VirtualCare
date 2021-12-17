@@ -11,7 +11,7 @@ load_dotenv()
 
 @app.route("/", methods=["GET","POST"])
 def main_page():
-    return render_template("index.html")
+    return render_template("index2.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -50,6 +50,8 @@ def register():
         return redirect(url_for("login"))
 
     return render_template("register-login.html", title="Register", form=form)
+
+
 
 
 app.route("/logout")
