@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, url_for, request, redirect, session, flash
 from data import queries
 
+
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET")
 
@@ -13,16 +14,27 @@ def main_page():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == "POST":
-        if request["password"] == request["confirm_password"]:
-            queries.add_account(request["username"], request["password"], request["email"])
-        else:
-            flash("Passwords does not match !!")
+    if request.method == "POST" and (request.form["password"] == request.form["confirm-password"]):
+        id = queries.count()
+        queries.add_account(request.form["username"], request.form["password"], request.form["email"], "users", id+1)
+        return redirect(url_for("main_page"))
+    else:
+        flash("Passwords does not match !!")
     return render_template("register-login.html", register=True)
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        users = queries.get_all("users")
+        for user in users:
+            if request.form["password"] == user["password"]:
+                print(session)
+                session["id"] = user["id"]
+                session["username"] = user["username"]
+                print(session)
+                
+                return redirect(url_for("main_page"))
     return render_template("register-login.html", register=False)
 
 
