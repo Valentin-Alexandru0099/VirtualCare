@@ -1,5 +1,6 @@
 import database_connection
-from psycopg2.extras import RealDictCursor
+from werkzeug.security import generate_password_hash
+
 
 @database_connection.connection_handler
 def get_all(cursor, table):
@@ -14,7 +15,7 @@ def add_account(cursor, username, password, email, table, id):
     INSERT INTO {table}
     VALUES(%(id)s, %(username)s, %(email)s, %(password)s)
     """
-    cursor.execute(querie, {"username": username, "email": email, "password": password, "id":id})
+    cursor.execute(querie, {"username": username, "email": email, "password": generate_password_hash(password), "id":id})
 
 
 @database_connection.connection_handler

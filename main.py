@@ -1,9 +1,8 @@
 import os
-import registration
 from flask import Flask, render_template, url_for, request, redirect, session, flash
 from dotenv import load_dotenv
 from data import queries
-from forms import LoginForm, RegistrationForm
+from werkzeug.security import check_password_hash
 
 
 app = Flask(__name__)
@@ -31,12 +30,13 @@ def login():
     if request.method == "POST":
         users = queries.get_all("users")
         for user in users:
-            if request.form["password"] == user["password"]:
+            print(user["password"])
+            print(request.form["password"])
+            if user["username"] == request.form["username"] and check_password_hash(user["password"], request.form["password"]):
                 print(session)
                 session["id"] = user["id"]
                 session["username"] = user["username"]
                 print(session)
-                
                 return redirect(url_for("main_page"))
     return render_template("register-login.html", register=False)
 
