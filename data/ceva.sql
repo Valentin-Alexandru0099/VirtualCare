@@ -18,6 +18,12 @@ CREATE TABLE patients(
     name text DEFAULT '',
     contact varchar NOT NULL,
     age integer,
-    affect varchar NOT NULL,
+    disease varchar NOT NULL,
     surgery varchar NOT NULL
+);
+
+CREATE TABLE disease(
+    id serial PRIMARY KEY NOT NULL,
+    name text DEFAULT '',
+    detail text DEFAULT ''
 );
