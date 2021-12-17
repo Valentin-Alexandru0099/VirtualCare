@@ -39,9 +39,4 @@ INSERT INTO disease (id, name, detail) VALUES (5, 'Heart Disease', 'If you are l
 INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (1, 'Dr. Oancea', 'Orthopedist', '0742180108', 'doctor.oancea@gmail.com', 'Oancea');
 INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (2, 'Dr. Ali', 'Neurologist', '0770837460', 'doctor.ali@gmail.com', 'Ali');
 INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (3, 'Dr. Jhony', 'Gainecologist', '0732878234', 'doctor.jhony@gmail.com', 'Jhony');
-INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (4, 'Dr. Schiopu', 'Dermatologist', '0765753159', 'doctor.schiopu@gmail.com', 'Shiopu');
-
-INSERT INTO users (id, username, email, password) VALUES (10, 'Oancea', 'doctor.oancea@gmail.com', 'Oancea123');
-INSERT INTO users (id, username, email, password) VALUES (11, 'Ali', 'doctor.ali@gmail.com', 'Ali123');
-INSERT INTO users (id, username, email, password) VALUES (12, 'Jhony', 'doctor.jhony@gmail.com', 'Jhony123');
-INSERT INTO users (id, username, email, password) VALUES (13, 'Shiopu', 'doctor.schiopu@gmail.com', 'Schiopu123');
+INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (4, 'Dr. Schiopu', 'Dermatologist', '0765753159', 'doctor.schiopu@gmail.com', 'Shciopu');
