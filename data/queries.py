@@ -60,9 +60,12 @@ def edit_patient(cursor, data):
     """
     cursor.execute(querie, data)
 
+
 @database_connection.connection_handler
 def doctor_appointments(cursor, doctor_id):
-    querie = """SELECT doctors.name, patients.name, patients.id as patientID, doctors.p_id as doctorID
+    querie = """SELECT doctors.name, patients.name, patients.surname, patients.id as patientID, doctors.p_id as doctorID
                 FROM doctors
-                JOIN patients on patients.id = doctors.p_id"""
+                JOIN patients on patients.id = doctors.p_id
+                GROUP BY doctors.name, patients.name, patients.id,  doctors.p_id"""
     cursor.execute(querie, doctor_id)
+    return cursor.fetchall()
