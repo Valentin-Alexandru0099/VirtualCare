@@ -29,14 +29,14 @@ def register():
 def login():
     if request.method == "POST":
         users = queries.get_all("users")
+        doctors = queries.get_all("doctors")
         for user in users:
-            print(user["password"])
-            print(request.form["password"])
             if user["username"] == request.form["username"] and check_password_hash(user["password"], request.form["password"]):
-                print(session)
                 session["id"] = user["id"]
                 session["username"] = user["username"]
-                print(session)
+                if user["username"] in doctors["username"]:
+                    session['doctor'] = True
+                print(session)    
                 return redirect(url_for("main_page"))
     return render_template("register-login.html", register=False)
 
