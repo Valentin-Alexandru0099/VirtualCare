@@ -37,7 +37,9 @@
             <li><a href="#home">home</a></li>
             <li><a href="#about">about</a></li>
             <li><a href="#review">review</a></li>
-            <li><a href="#contact">contact</a></li>
+            {% if session.username %}
+            <li><a href="#contact">appointment</a></li>
+            {% endif %}
             {% if session.username %}
             <li><a href="{{url_for('login')}}">logged in as {{session.username}}</a></li>
             <li><a href="{{url_for('logout')}}">log out</a></li>
@@ -274,7 +276,7 @@
 <!-- counter section ends -->
 
 <!-- contact section starts  -->
-
+{% if session.username %}
 <section class="contact" id="contact">
 
     <div class="container min-vh-100">
@@ -285,7 +287,7 @@
 
             <div class="col-md-10" data-aos="flip-down">
 
-                <form action="">
+                <form action="" method="post">
 
                     <div class="inputBox">
                         <input type="text" placeholder="full name">
@@ -308,14 +310,14 @@
                     <input type="submit" name="" id="" value="make appointment" class="button">
 
                 </form>
-
             </div>
-
+            
         </div>
-
+        
     </div>
-
+    
 </section>
+{% endif %}
 
 <!-- contact section ends -->
 
