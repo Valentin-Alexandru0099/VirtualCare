@@ -17,11 +17,18 @@ CREATE TABLE doctors(
 CREATE TABLE patients(
     id serial PRIMARY KEY NOT NULL,
     name text DEFAULT '',
-    contact varchar NOT NULL,
     age integer,
-    disease varchar NOT NULL,
-    surgery varchar NOT NULL,
-    email varchar UNIQUE
+    surname varchar,
+    contact varchar DEFAULT '',
+    adress_line varchar,
+    gender text,
+    height float,
+    weight float,
+    country varchar,
+    region varchar,
+    disease varchar DEFAULT '',
+    surgery varchar DEFAULT '',
+    email varchar UNIQUE,
 );
 
 CREATE TABLE disease(
@@ -29,6 +36,8 @@ CREATE TABLE disease(
     name text DEFAULT '',
     detail text DEFAULT ''
 );
+
+
 
 INSERT INTO disease (id, name, detail) VALUES (1, 'Thrombosis', 'A vascular disease caused by the formation of a blood clot inside a blood vessel, obstructing the flow of blood through the circulatory system.');
 INSERT INTO disease (id, name, detail) VALUES (2, 'Depression', 'Depression (also known as major depression or major depressive disorder) is a psychiatric disorder that affects mood, behavior, and overall health. It causes prolonged feelings of sadness, emptiness, or hopelessness, and a loss of interest in activities that were once enjoyed. People with depression may also have changes in appetite (leading to overeating or not eating enough), changes in sleeping patterns (sleeping too much or not being able to sleep), loss of energy, and difficulty concentrating.');
@@ -39,9 +48,4 @@ INSERT INTO disease (id, name, detail) VALUES (5, 'Heart Disease', 'If you are l
 INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (1, 'Dr. Oancea', 'Orthopedist', '0742180108', 'doctor.oancea@gmail.com', 'Oancea');
 INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (2, 'Dr. Ali', 'Neurologist', '0770837460', 'doctor.ali@gmail.com', 'Ali');
 INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (3, 'Dr. Jhony', 'Gainecologist', '0732878234', 'doctor.jhony@gmail.com', 'Jhony');
-INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (4, 'Dr. Schiopu', 'Dermatologist', '0765753159', 'doctor.schiopu@gmail.com', 'Shiopu');
-
-INSERT INTO users (id, username, email, password) VALUES (10, 'Oancea', 'doctor.oancea@gmail.com', 'Oancea123');
-INSERT INTO users (id, username, email, password) VALUES (11, 'Ali', 'doctor.ali@gmail.com', 'Ali123');
-INSERT INTO users (id, username, email, password) VALUES (12, 'Jhony', 'doctor.jhony@gmail.com', 'Jhony123');
-INSERT INTO users (id, username, email, password) VALUES (13, 'Shiopu', 'doctor.schiopu@gmail.com', 'Schiopu123');
+INSERT INTO doctors (id, name, specialization, contact, email, username) VALUES (4, 'Dr. Schiopu', 'Dermatologist', '0765753159', 'doctor.schiopu@gmail.com', 'Shciopu');
