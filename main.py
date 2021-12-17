@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from data import queries
 from forms import LoginForm, RegistrationForm
 
+
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET")
 load_dotenv()
@@ -37,6 +38,7 @@ def login():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+<<<<<<< HEAD
     form = RegistrationForm()
     if form.validate_on_submit():
         user_data = {
@@ -52,6 +54,30 @@ def register():
     return render_template("register-login.html", title="Register", form=form)
 
 
+=======
+    if request.method == "POST" and (request.form["password"] == request.form["confirm-password"]):
+        id = queries.count()
+        queries.add_account(request.form["username"], request.form["password"], request.form["email"], "users", id+1)
+        return redirect(url_for("main_page"))
+    else:
+        flash("Passwords does not match !!")
+    return render_template("register-login.html", register=True)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        users = queries.get_all("users")
+        for user in users:
+            if request.form["password"] == user["password"]:
+                print(session)
+                session["id"] = user["id"]
+                session["username"] = user["username"]
+                print(session)
+                
+                return redirect(url_for("main_page"))
+    return render_template("register-login.html", register=False)
+>>>>>>> 8f3721587d8deb1b20e9f866fbf3413573d17a98
 
 
 app.route("/logout")
