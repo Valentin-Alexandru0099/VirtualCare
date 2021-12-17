@@ -19,7 +19,7 @@ def register():
     if request.method == "POST" and (request.form["password"] == request.form["confirm-password"]):
         id = queries.count()
         queries.add_account(request.form["username"], request.form["password"], request.form["email"], "users", id+1)
-        return redirect(url_for("main_page"))
+        return redirect(url_for("register"))
     else:
         flash("Passwords does not match !!")
     return render_template("register-login.html", register=True)
@@ -29,14 +29,16 @@ def register():
 def login():
     if request.method == "POST":
         users = queries.get_all("users")
+        doctors = queries.get_all("doctors")
+        print(doctors)
         for user in users:
-            print(user["password"])
-            print(request.form["password"])
             if user["username"] == request.form["username"] and check_password_hash(user["password"], request.form["password"]):
-                print(session)
                 session["id"] = user["id"]
                 session["username"] = user["username"]
-                print(session)
+                for doctor in doctors:
+                    if session["username"] == doctor["username"]:
+                        session["doctor"] = True
+                        print(session)
                 return redirect(url_for("main_page"))
     return render_template("register-login.html", register=False)
 
