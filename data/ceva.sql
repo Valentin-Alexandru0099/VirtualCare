@@ -40,6 +40,13 @@ CREATE TABLE disease(
     detail text DEFAULT ''
 );
 
+CREATE TABLE appointments(
+    id serial PRIMARY KEY NOT NULL,
+    p_id integer,
+    d_id integer,
+    message varchar,
+    date timestamp
+)
 
 
 INSERT INTO disease (id, name, detail) VALUES (1, 'Thrombosis', 'A vascular disease caused by the formation of a blood clot inside a blood vessel, obstructing the flow of blood through the circulatory system.');
