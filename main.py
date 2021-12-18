@@ -81,7 +81,7 @@ def user_page(user_id):
             "user_id": user_id,
         }
         queries.edit_patient(data)
-        return redirect(url_for('user_page', user_id))
+        return redirect(url_for("user_page", user_id))
     return render_template("user_page.html", user=user)
 
 
@@ -95,19 +95,20 @@ def doctor_page(doctor_id):
 def calendar():
     return render_template("{{url_for('static', filename='index.html')}}")
 
-  
-@app.route('/appointments', methods=["POST", "GET"])
+
+@app.route("/appointments", methods=["POST", "GET"])
 def post_appointments():
-    message = request.form.get('message')
-    date = request.form.get('date')
+    message = request.form.get("message")
+    date = request.form.get("date")
     data = {
-        'p_id': session["id"],
-        'd_id': request.form.get("option"),
-        'message': message,
-        'date': date
+        "p_id": session["id"],
+        "d_id": request.form.get("option"),
+        "message": message,
+        "date": date,
     }
     queries.post_appointments(data)
-    return redirect(url_for('main_page'))
+    return redirect(url_for("main_page"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
