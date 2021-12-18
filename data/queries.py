@@ -64,3 +64,10 @@ def doctor_appointments(cursor, doctor_id):
                 inner join patients on patients.d_id = doctors.id"""
     cursor.execute(querie, doctor_id)
     return cursor.fetchall()
+
+@database_connection.connection_handler
+def post_appointments(cursor, data):
+    querie = """INSERT INTO appointments (p_id, d_id, message, date) 
+                VALUES (%(p_id)s, %(d_id)s, %(message)s, %(date)s)
+                """
+    cursor.execute(querie, data)

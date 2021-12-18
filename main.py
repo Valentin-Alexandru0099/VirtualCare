@@ -12,7 +12,8 @@ load_dotenv()
 
 @app.route("/", methods=["GET", "POST"])
 def main_page():
-    return render_template("index2.html")
+    doctors = queries.get_all("doctors")
+    return render_template("index2.html", doctors=doctors)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -94,6 +95,19 @@ def doctor_page(doctor_id):
 def calendar():
     return render_template("{{url_for('static', filename='index.html')}}")
 
+  
+@app.route('/appointments', methods=["POST", "GET"])
+def post_appointments():
+    message = request.form.get('message')
+    date = request.form.get('date')
+    data = {
+        'p_id': session["id"],
+        'd_id': request.form.get("option"),
+        'message': message,
+        'date': date
+    }
+    queries.post_appointments(data)
+    return redirect(url_for('main_page'))
 
 if __name__ == "__main__":
     app.run(debug=True)

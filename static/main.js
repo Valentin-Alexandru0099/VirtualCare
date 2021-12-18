@@ -27,3 +27,14 @@ $(document).ready(function(){
     });
   
   });
+
+  const button = document.querySelector("#appointment")
+  const message = document.querySelector("#message")
+  const date = document.querySelector("#date")
+
+  button.addEventListener('click', function(){
+    console.log(message.value)
+    console.log(date.value)
+    
+    
+  })

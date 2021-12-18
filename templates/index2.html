@@ -323,31 +323,24 @@
 
                 <div class="col-md-10" data-aos="flip-down">
 
-                    <form action="" method="post">
+                    <form action="/appointments" method="POST">
 
                         <div class="inputBox">
-                            <input type="text" placeholder="full name">
+                            <select name="option" id="option">
+                                {% for doctor in doctors %}
+                                <option value="{{ doctor.id }}" id="option" name="option"> {{ doctor.name }}</option>
+                                {% endfor %}
+                            </select>
                             <input type="number" placeholder="phone">
                         </div>
-
                         <div class="inputBox">
                             <input type="email" placeholder="your email">
-                            <select name="" id="">
-                                <option value="" disabled selected>make an appointment</option>
-                                <option value="09-11 am">09-11 am</option>
-                                <option value="11-13 pm">11-13 pm</option>
-                                <option value="13-15 pm">13-15 pm</option>
-                                <option value="15-17 pm">15-17 pm</option>
-                                <option value="17-19 pm">17-19 pm</option>
-                            </select>
-                        </div>
-                        <div>
-                            <a class="{{ url_for('calendar')}}"> Calendar </a>
+                            <input type="datetime-local" id="date" value="" name="date">
                         </div>
 
-                        <textarea name="" id="" cols="30" rows="10" placeholder="message ( optional )"></textarea>
-
-                        <input type="submit" name="" id="" value="make appointment" class="button">
+                        <textarea name="message" id="message" cols="90.99" rows="8" placeholder="message ( optional )"></textarea>
+                        <br><br>
+                        <input type="submit" value="Submit">
 
                     </form>
                 </div>
@@ -479,7 +472,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <!-- custom js link  -->
-    <script src="{{url_for('static', filename='main.js')}}"></script>
+    <script src="{{url_for('static', filename='main.js')}}" defer></script>
 
 
     <script>
