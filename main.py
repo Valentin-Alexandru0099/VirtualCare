@@ -104,12 +104,16 @@ def post_appointments():
     return redirect(url_for("main_page"))
 
 
-@app.route("/delete-appointment/<int:appointment_id>", methods=["GET", "POST"])
-def delete_appointment(appointment_id):
-    print(appointment_id)
-    id = queries.delete_appointment(appointment_id)
+@app.route("/delete-doctor-appointment/<int:appointment_id>", methods=["GET", "POST"])
+def delete_doctor_appointment(appointment_id):
+    id = queries.delete_appointment(appointment_id, 'p_id')
     return redirect(url_for("user_page", user_id=id))
 
+
+@app.route("/delete-patient-appointment/<int:appointment_id>", methods=["GET", "POST"])
+def delete_patient_appointment(appointment_id):
+    id = queries.delete_appointment(appointment_id, 'd_id')
+    return redirect(url_for("doctor_page", doctor_id=id))
 
 if __name__ == "__main__":
     app.run(debug=True)

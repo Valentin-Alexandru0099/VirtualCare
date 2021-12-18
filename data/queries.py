@@ -67,15 +67,6 @@ def edit_patient(cursor, data):
 
 
 @database_connection.connection_handler
-def doctor_appointments(cursor, doctor_id):
-    querie = """select doctors.name, patients.name, patients.surname, patients.email, patients.contact
-                from doctors 
-                inner join patients on patients.d_id = doctors.id"""
-    cursor.execute(querie, doctor_id)
-    return cursor.fetchall()
-
-
-@database_connection.connection_handler
 def post_appointments(cursor, data):
     querie = """INSERT INTO appointments (p_id, d_id, message, date) 
                 VALUES (%(p_id)s, %(d_id)s, %(message)s, %(date)s)
@@ -93,7 +84,7 @@ def get_user(cursor, user_id):
 
 @database_connection.connection_handler
 def get_app_data(cursor, user_id):
-    querie = """
+    querie = f"""
     SELECT appointments.*, doctors.name
     FROM appointments
     FULL JOIN doctors
@@ -105,7 +96,20 @@ def get_app_data(cursor, user_id):
 
 
 @database_connection.connection_handler
-def delete_appointment(cursor, id):
-    querie = "DELETE FROM appointments WHERE id=%(id)s RETURNING p_id"
+def delete_appointment(cursor, id, col):
+    querie = f"DELETE FROM appointments WHERE id=%(id)s RETURNING {col}"
     cursor.execute(querie, {"id":id})
-    return cursor.fetchone()["p_id"]
+    return cursor.fetchone()[col]
+
+
+@database_connection.connection_handler
+def doctor_appointments(cursor, doctor_id):
+    querie ="""
+    SELECT appointments.*, patients.name, patients.email, patients.contact, patients.surname
+    FROM appointments
+    FULL JOIN patients
+    ON appointments.p_id=patients.id
+    WHERE appointments.d_id=%(doctor_id)s
+    """ 
+    cursor.execute(querie, {"doctor_id":doctor_id})
+    return cursor.fetchall()
