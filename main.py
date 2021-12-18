@@ -1,5 +1,4 @@
 import os
-import re
 from flask import Flask, render_template, url_for, request, redirect, session, flash
 from dotenv import load_dotenv
 from data import queries
