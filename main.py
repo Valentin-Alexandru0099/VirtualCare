@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from data import queries
 from werkzeug.security import check_password_hash
 
+
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET")
 load_dotenv()
@@ -80,6 +81,7 @@ def user_page(user_id):
             "user_id": user_id,
         }
         queries.edit_patient(data)
+        return redirect(url_for('user_page', user_id))
     return render_template("user_page.html", user=user)
 
 
@@ -88,10 +90,12 @@ def doctor_page(doctor_id):
     patients = queries.doctor_appointments(doctor_id)
     return render_template("doctor_page.html", doctor_id=doctor_id, patients=patients)
 
+
 @app.route("/calendar", methods=["POST", "GET"])
 def calendar():
     return render_template("{{url_for('static', filename='index.html')}}")
 
+  
 @app.route('/appointments', methods=["POST", "GET"])
 def post_appointments():
     message = request.form.get('message')

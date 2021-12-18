@@ -10,18 +10,10 @@
                         class="rounded" width="155"> </div>
                 <div class="ml-3 w-100">
                     <h4 class="mb-0 mt-0">{{patient.name}} {{patient.surname}}</h4>
-                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                        <div class="d-flex flex-column"> <span class="articles">Articles</span> <span
-                                class="number1">38</span> </div>
-                        <div class="d-flex flex-column"> <span class="followers">Followers</span> <span
-                                class="number2">980</span> </div>
-                        <div class="d-flex flex-column"> <span class="rating">Rating</span> <span
-                                class="number3">8.9</span>
-                        </div>
-                    </div>
-                    <div class="button mt-2 d-flex flex-row align-items-center"> <button
-                            class="btn btn-sm btn-outline-primary w-100">Chat</button> <button
-                            class="btn btn-sm btn-primary w-100 ml-2">Follow</button> </div>
+                    <p>Email: <span>{{patient.email}}</span></p>
+                    <p>Mobile: <span>{{patient.contact}}</span></p>
+                    <button class="btn btn-sm btn-primary w-100 ml-2">Go to Appointment</button>
+                    <button class="btn btn-sm btn-danger w-100 ml-2">Delete Appointment</button>
                 </div>
             </div>
         </div>

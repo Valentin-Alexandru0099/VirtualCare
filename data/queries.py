@@ -50,10 +50,6 @@ def get_user(cursor, user_id):
 @database_connection.connection_handler
 def edit_patient(cursor, data):
     querie = """
-    INSERT INTO patients(name, age, surname, contact, adress_line, gender, height, weight, country, region, disease, surgery)
-    VALUES(,,,,,,,,%(country)s,%(region)s,%(disease)s,%(surgery)s)
-    """
-    querie = """
     UPDATE patients
     SET name=%(name)s, age=%(age)s, surname=%(surname)s, contact=%(contact)s, adress_line=%(adress_line)s, gender=%(gender)s, height=%(height)s, weight=%(weight)s, country=%(country)s, region=%(region)s, disease=%(disease)s, surgery=%(surgery)s
     WHERE id=%(user_id)s
@@ -63,7 +59,7 @@ def edit_patient(cursor, data):
 
 @database_connection.connection_handler
 def doctor_appointments(cursor, doctor_id):
-    querie = """select doctors.name, patients.name, patients.surname
+    querie = """select doctors.name, patients.name, patients.surname, patients.email, patients.contact
                 from doctors 
                 inner join patients on patients.d_id = doctors.id"""
     cursor.execute(querie, doctor_id)
