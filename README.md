@@ -12,13 +12,14 @@ We have created VirtualCare, an e-Health application designed to connect patient
 
 HOW TO RUN:
 
-Create a virtual environment in your project folder and install the dependencies listed in requirements.txt. Set environmental variables by making a copy of .env.template named .env and filling in the details.
+1. Create a virtual environment in your project folder and install the dependencies listed in requirements.txt. Set environmental variables by making a copy of .env.template named .env and filling in the details.
 
 PSQL_DB_NAME – The name of the database to be filled.
 PSQL_USER_NAME – The database username.
 PSQL_HOST – localhost
 PSQL_PASSWORD – The database user password. If no password is needed, put a random word here.
 
+2. Create your database and enjoy!
 
 Credits:
 https://www.malacards.org/categories - diseases
