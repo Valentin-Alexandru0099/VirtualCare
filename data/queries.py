@@ -2,6 +2,8 @@ from werkzeug import datastructures
 import database_connection
 from werkzeug.security import generate_password_hash
 
+from main import user_page
+
 
 @database_connection.connection_handler
 def get_all(cursor, table):
@@ -41,10 +43,17 @@ def count(cursor):
 
 
 @database_connection.connection_handler
-def get_user(cursor, user_id):
-    querie = "SELECT * FROM patients WHERE id=%(user_id)s"
+def get_specific(cursor, user_id):
+    querie = "SELECT * FROM appointments WHERE p_id=%(user_id)s"
     cursor.execute(querie, {"user_id": user_id})
-    return cursor.fetchone()
+    return cursor.fetchall()
+
+
+@database_connection.connection_handler
+def get_doctor_name(cursor, user_id):
+    querie = "SELECT doctors.name FROM doctors WHERE id IN(SELECT appointments.d_id FROM appointments WHERE appointments.p_id=%(user_id)s)"
+    cursor.execute(querie, {"user_id":user_id})
+    return cursor.fetchall()
 
 
 @database_connection.connection_handler
@@ -58,16 +67,49 @@ def edit_patient(cursor, data):
 
 
 @database_connection.connection_handler
-def doctor_appointments(cursor, doctor_id):
-    querie = """select doctors.name, patients.name, patients.surname, patients.email, patients.contact
-                from doctors 
-                inner join patients on patients.d_id = doctors.id"""
-    cursor.execute(querie, doctor_id)
-    return cursor.fetchall()
-
-@database_connection.connection_handler
 def post_appointments(cursor, data):
     querie = """INSERT INTO appointments (p_id, d_id, message, date) 
                 VALUES (%(p_id)s, %(d_id)s, %(message)s, %(date)s)
                 """
     cursor.execute(querie, data)
+
+
+@database_connection.connection_handler
+def get_user(cursor, user_id):
+    querie = "SELECT * FROM patients WHERE id=%(user_id)s"
+    cursor.execute(querie, {"user_id": user_id})
+    return cursor.fetchone()
+
+
+
+@database_connection.connection_handler
+def get_app_data(cursor, user_id):
+    querie = f"""
+    SELECT appointments.*, doctors.name
+    FROM appointments
+    FULL JOIN doctors
+    ON appointments.d_id=doctors.id
+    WHERE appointments.p_id=%(user_id)s
+    """
+    cursor.execute(querie, { "user_id": user_id})
+    return cursor.fetchall()
+
+
+@database_connection.connection_handler
+def delete_appointment(cursor, id, col):
+    querie = f"DELETE FROM appointments WHERE id=%(id)s RETURNING {col}"
+    cursor.execute(querie, {"id":id})
+    return cursor.fetchone()[col]
+
+
+@database_connection.connection_handler
+def doctor_appointments(cursor, doctor_id):
+    querie ="""
+    SELECT appointments.*, patients.name, patients.email, patients.contact, patients.surname
+    FROM appointments
+    FULL JOIN patients
+    ON appointments.p_id=patients.id
+    WHERE appointments.d_id=%(doctor_id)s
+    """ 
+    cursor.execute(querie, {"doctor_id":doctor_id})
+    return cursor.fetchall()

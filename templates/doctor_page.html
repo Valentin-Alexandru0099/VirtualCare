@@ -12,8 +12,10 @@
                     <h4 class="mb-0 mt-0">{{patient.name}} {{patient.surname}}</h4>
                     <p>Email: <span>{{patient.email}}</span></p>
                     <p>Mobile: <span>{{patient.contact}}</span></p>
-                    <button class="btn btn-sm btn-primary w-100 ml-2">Go to Appointment</button>
-                    <button class="btn btn-sm btn-danger w-100 ml-2">Delete Appointment</button>
+                    <p>About: <span>{{patient.message}}</span></p>
+
+                    <a href="{{ url_for('user_page', user_id=patient.p_id) }}" class="btn btn-primary profile-button" type="button">Appointment</a>
+                    <a href="{{ url_for('delete_patient_appointment', appointment_id=patient.id) }}" class="btn btn-danger" type="button">delete appointment</a>
                 </div>
             </div>
         </div>

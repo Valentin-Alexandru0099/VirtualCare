@@ -1,59 +1,91 @@
 {% extends "index2.html" %} {% block content %}
 <br /><br /><br /><br /><br />
 <form action="{{ url_for('user_page', user_id=user.id) }}" method="post">
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                        width="150px"
-                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
-                        class="font-weight-bold">{{ user.username }}</span><span class="text-black-50">{{ user.email
-                        }}</span><span> </span></div>
-            </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Name</label><input name="name" type="text" class="form-control"
-                                placeholder="first name" value="{{ user.name }}"></div>
-                        <div class="col-md-6"><label class="labels">Surname</label><input name="surname" type="text"
-                                class="form-control" value="{{ user.surname }}" placeholder="surname"></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Mobile Number</label><input name="contact" type="text"
-                                class="form-control" placeholder="enter phone number" value="{{ user.contact }}"></div>
-                        <div class="col-md-12"><label class="labels">Address Line</label><input name="adress_line" type="text"
-                                class="form-control" placeholder="enter address line" value="{{ user.address_line }}">
+        <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row">
+                        <div class="col-md-3 border-right">
+                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
+                                                class="rounded-circle mt-5" width="150px"
+                                                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                                                class="font-weight-bold">{{ user.username }}</span><span
+                                                class="text-black-50">{{ user.email
+                                                }}</span><span> </span></div>
                         </div>
-                        <div class="col-md-12"><label class="labels">Gender</label><input name="gender" type="text"
-                                class="form-control" placeholder="gender" value="{{ user.gender }}"></div>
-                        <div class="col-md-12"><label class="labels">Age</label><input name="age" type="text" class="form-control"
-                                placeholder="age" value="{{ user.age }}"></div>
-                        <div class="col-md-12"><label class="labels">Height</label><input name="height" type="text"
-                                class="form-control" placeholder="Height" value="{{ user.height }}"></div>
-                        <div class="col-md-12"><label class="labels">Wieght</label><input name="weight" type="text"
-                                class="form-control" placeholder="Weight" value="{{ user.weight }}"></div>
-                        <div class="col-md-12"><label class="labels">Disease</label><input name="disease" type="text"
-                                class="form-control" placeholder="Disease" value="{{ user.disease }}"></div>
-                        <div class="col-md-12"><label class="labels">Surgeries</label><input name="surgeries" type="text"
-                                class="form-control" placeholder="Surgeries" value="{{ user.surgeries }}"></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Country</label><input name="country" type="text"
-                                class="form-control" placeholder="country" value="{{ user.country }}"></div>
-                        <div class="col-md-6"><label class="labels">Region</label><input name="region" type="text"
-                                class="form-control" value="{{ user.region }}" placeholder="Region"></div>
-                    </div>
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save
-                            Profile</button></div>
+                        <div class="col-md-5 border-right">
+                                <div class="p-3 py-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h4 class="text-right">Profile Settings</h4>
+                                        </div>
+                                        <div class="row mt-2">
+                                                <div class="col-md-6"><label class="labels">Name</label><input
+                                                                name="name" type="text" class="form-control"
+                                                                placeholder="first name" value="{{ user.name }}"></div>
+                                                <div class="col-md-6"><label class="labels">Surname</label><input
+                                                                name="surname" type="text" class="form-control"
+                                                                value="{{ user.surname }}" placeholder="surname"></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                                <div class="col-md-12"><label class="labels">Mobile Number</label><input
+                                                                name="contact" type="text" class="form-control"
+                                                                placeholder="enter phone number"
+                                                                value="{{ user.contact }}"></div>
+                                                <div class="col-md-12"><label class="labels">Address Line</label><input
+                                                                name="adress_line" type="text" class="form-control"
+                                                                placeholder="enter address line"
+                                                                value="{{ user.address_line }}">
+                                                </div>
+                                                <div class="col-md-12"><label class="labels">Gender</label><input
+                                                                name="gender" type="text" class="form-control"
+                                                                placeholder="gender" value="{{ user.gender }}"></div>
+                                                <div class="col-md-12"><label class="labels">Age</label><input
+                                                                name="age" type="text" class="form-control"
+                                                                placeholder="age" value="{{ user.age }}"></div>
+                                                <div class="col-md-12"><label class="labels">Height</label><input
+                                                                name="height" type="text" class="form-control"
+                                                                placeholder="Height" value="{{ user.height }}"></div>
+                                                <div class="col-md-12"><label class="labels">Wieght</label><input
+                                                                name="weight" type="text" class="form-control"
+                                                                placeholder="Weight" value="{{ user.weight }}"></div>
+                                                <div class="col-md-12"><label class="labels">Disease</label><input
+                                                                name="disease" type="text" class="form-control"
+                                                                placeholder="Disease" value="{{ user.disease }}"></div>
+                                                <div class="col-md-12"><label class="labels">Surgeries</label><input
+                                                                name="surgeries" type="text" class="form-control"
+                                                                placeholder="Surgeries" value="{{ user.surgeries }}">
+                                                </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                                <div class="col-md-6"><label class="labels">Country</label><input
+                                                                name="country" type="text" class="form-control"
+                                                                placeholder="country" value="{{ user.country }}"></div>
+                                                <div class="col-md-6"><label class="labels">Region</label><input
+                                                                name="region" type="text" class="form-control"
+                                                                value="{{ user.region }}" placeholder="Region"></div>
+                                        </div>
+                                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                                                        type="submit">Save
+                                                        Profile</button></div>
+                                </div>
+                        </div>
+                        <div class="col-md-4">
+                                <div class="p-3 py-5">
+                                        {% for data in app_data%}
+                                        <div class="card" style="width: 18rem;">
+                                                <div class="card-body" style="text-align: center;">
+                                                        <h5 class="card-title">Appointment Card</h5>
+                                                        <p class="card-text">Appointment with  {{data.name}}  in  {{data.date}} </p>
+                                                        <div class="card-footer">
+                                                                <a href="{{ url_for('user_page', user_id=user.id) }}" class="btn btn-primary profile-button" type="button">Appointment</a>
+                                                                <a href="{{ url_for('delete_doctor_appointment', appointment_id=data.id) }}" class="btn btn-danger" type="button">delete appointment</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        {% endfor %}
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-    </div>
-    </div>
-    </div>
+        </div>
 </form>
 
 {% endblock %}
