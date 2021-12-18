@@ -31,8 +31,6 @@ def register():
         )
         queries.add_patients(id + 1, request.form["username"], request.form["email"])
         return redirect(url_for("register"))
-    else:
-        flash("Passwords does not match !!")
     return render_template("register-login.html", register=True)
 
 
@@ -64,6 +62,7 @@ def logout():
 @app.route("/user/<int:user_id>", methods=["POST", "GET"])
 def user_page(user_id):
     user = queries.get_user(user_id)
+    app_data = queries.get_app_data(user_id)
     if request.method == "POST":
         data = {
             "name": request.form["name"],
@@ -81,19 +80,14 @@ def user_page(user_id):
             "user_id": user_id,
         }
         queries.edit_patient(data)
-        return redirect(url_for("user_page", user_id))
-    return render_template("user_page.html", user=user)
+        return redirect(url_for("user_page", user_id=user_id))
+    return render_template("user_page.html", user=user, app_data=app_data)
 
 
 @app.route("/doctor/<int:doctor_id>", methods=["POST", "GET"])
 def doctor_page(doctor_id):
     patients = queries.doctor_appointments(doctor_id)
     return render_template("doctor_page.html", doctor_id=doctor_id, patients=patients)
-
-
-@app.route("/calendar", methods=["POST", "GET"])
-def calendar():
-    return render_template("{{url_for('static', filename='index.html')}}")
 
 
 @app.route("/appointments", methods=["POST", "GET"])
@@ -108,6 +102,13 @@ def post_appointments():
     }
     queries.post_appointments(data)
     return redirect(url_for("main_page"))
+
+
+@app.route("/delete-appointment/<int:appointment_id>", methods=["GET", "POST"])
+def delete_appointment(appointment_id):
+    print(appointment_id)
+    id = queries.delete_appointment(appointment_id)
+    return redirect(url_for("user_page", user_id=id))
 
 
 if __name__ == "__main__":
