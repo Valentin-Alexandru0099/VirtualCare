@@ -41,7 +41,6 @@ def login():
     if request.method == "POST":
         users = queries.get_all("users")
         doctors = queries.get_all("doctors")
-        print(doctors)
         for user in users:
             if user["username"] == request.form["username"] and check_password_hash(
                 user["password"], request.form["password"]
@@ -52,7 +51,6 @@ def login():
                 for doctor in doctors:
                     if session["username"] == doctor["username"]:
                         session["doctor"] = True
-                        print(session)
                 return redirect(url_for("main_page"))
     return render_template("register-login.html", register=False)
 
@@ -89,7 +87,6 @@ def user_page(user_id):
 @app.route("/doctor/<int:doctor_id>", methods=["POST", "GET"])
 def doctor_page(doctor_id):
     patients = queries.doctor_appointments(doctor_id)
-    print(patients)
     return render_template("doctor_page.html", doctor_id=doctor_id, patients=patients)
 
 
