@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='user_page.css')}}">
 
+    <!-- <link href="{{ url_for('static', filename='doctor.css') }}"> -->
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 
         <div class="container">
 
-            <a href="#" class="logo"><span>H</span>ackathon<span>C</span>odecool.</a>
+            <a href="{{url_for('main_page')}}" class="logo"><span>H</span>ackathon<span>C</span>odecool.</a>
 
             <nav class="nav">
                 <ul>

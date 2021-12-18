@@ -1,70 +1,32 @@
 {% extends "index2.html" %} {% block content %}
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4"><a href="#custom-modal" class="btn btn-custom waves-effect waves-light mb-4"
-                    data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200"
-                    data-overlaycolor="#36404a"><i class="mdi mdi-plus"></i><br><br></a></div>
-            <!-- end col -->
-        </div>
-        <!-- end row -->
-        {% for patient in patients %}
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="text-center card-box">
-                    <div class="member-card pt-2 pb-2">
-                        <div class="thumb-lg member-thumb mx-auto"><img
-                                src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                                class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                        <div class="">
-                            <h4>{{patient.name}} {{patient.surname}}</h4>
-                            <p class="text-muted">@Founder <span>| </span><span><a href="#"
-                                        class="text-pink">websitename.com</a></span></p>
-                        </div>
-                        <ul class="social-links list-inline">
-                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip"
-                                    class="tooltips" href="" data-original-title="Facebook"><i
-                                        class="fa fa-facebook"></i></a></li>
-                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip"
-                                    class="tooltips" href="" data-original-title="Twitter"><i
-                                        class="fa fa-twitter"></i></a></li>
-                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip"
-                                    class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                            </li>
-                        </ul>
-                        <button type="button"
-                            class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                        <div class="mt-4">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="mt-3">
-                                        <h4>2563</h4>
-                                        <p class="mb-0 text-muted">Wallets Balance</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="mt-3">
-                                        <h4>6952</h4>
-                                        <p class="mb-0 text-muted">Income amounts</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="mt-3">
-                                        <h4>1125</h4>
-                                        <p class="mb-0 text-muted">Total Transactions</p>
-                                    </div>
-                                </div>
-                            </div>
+<link href="{{ url_for('static', filename='doctor.css') }}">
+{% for patient in patients %}
+<div class="container_doctor">
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card p-3">
+            <div class="d-flex align-items-center">
+                <div class="image"> <img
+                        src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+                        class="rounded" width="155"> </div>
+                <div class="ml-3 w-100">
+                    <h4 class="mb-0 mt-0">{{patient.name}} {{patient.surname}}</h4> <span>Senior Journalist</span>
+                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                        <div class="d-flex flex-column"> <span class="articles">Articles</span> <span
+                                class="number1">38</span> </div>
+                        <div class="d-flex flex-column"> <span class="followers">Followers</span> <span
+                                class="number2">980</span> </div>
+                        <div class="d-flex flex-column"> <span class="rating">Rating</span> <span
+                                class="number3">8.9</span>
                         </div>
                     </div>
+                    <div class="button mt-2 d-flex flex-row align-items-center"> <button
+                            class="btn btn-sm btn-outline-primary w-100">Chat</button> <button
+                            class="btn btn-sm btn-primary w-100 ml-2">Follow</button> </div>
                 </div>
             </div>
-
         </div>
-        <!-- end row -->
     </div>
-    <!-- container -->
     {% endfor %}
+</div>
 </div>
 {% endblock %}

@@ -1,56 +1,43 @@
-.container1 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    /* border: 5px solid #FFFF00; */
-    padding: 10px;
+.card {
+    width: 400px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff
 }
 
-.card-box {
-    padding: 20px;
-    border-radius: 3px;
-    margin-bottom: 30px;
-    background-color: #fff;
+.container_doctor{
+
+
 }
 
-.social-links li a {
-    border-radius: 50%;
-    color: rgba(121, 121, 121, .8);
-    display: inline-block;
-    height: 30px;
-    line-height: 27px;
-    border: 2px solid rgba(121, 121, 121, .5);
-    text-align: center;
-    width: 30px
+.stats {
+    background: #f2f5f8 !important;
+    color: #000 !important
 }
 
-.social-links li a:hover {
-    color: #797979;
-    border: 2px solid #797979
+.articles {
+    font-size: 10px;
+    color: #a1aab9
 }
-.thumb-lg {
-    height: 88px;
-    width: 88px;
+
+.number1 {
+    font-weight: 500
 }
-.img-thumbnail {
-    padding: .25rem;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: .25rem;
-    max-width: 100%;
-    height: auto;
+
+.followers {
+    font-size: 10px;
+    color: #a1aab9
 }
-.text-pink {
-    color: #ff679b!important;
+
+.number2 {
+    font-weight: 500
 }
-.btn-rounded {
-    border-radius: 2em;
+
+.rating {
+    font-size: 10px;
+    color: #a1aab9
 }
-.text-muted {
-    color: #98a6ad!important;
-}
-h4 {
-    line-height: 22px;
-    font-size: 18px;
+
+.number3 {
+    font-weight: 500
 }
