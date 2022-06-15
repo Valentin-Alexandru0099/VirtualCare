@@ -47,3 +47,19 @@ Into the database.
     <a href="https://flask.palletsprojects.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="flask" width="40" height="40"/> </a>
     <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-original.svg" alt="django" width="40" height="40"/> </a> 
     </div>
+<hr/>
+
+<div align="center" style="gap: 100px;">
+  <p> 🖐️ Here are some pictures from the platform: 🖐️ </p>
+</div>
+  <img src="https://user-images.githubusercontent.com/86414654/173811207-0c318f76-3dae-48fb-a69f-ccb9dee8ed95.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173811915-21b0d649-4dbc-4202-9005-2e054f497b2a.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173811998-873cc6d8-0e3e-4f78-9b99-6a40c1a060b8.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173812121-ba3e1463-1fe2-440c-a121-5945bf13d7bd.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173812174-b09df97e-9f30-4334-afd1-4cd0a7331929.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173812246-6b42d03b-bfb0-46d5-a56a-174b9ccb182c.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173812305-6d95be54-d2ac-4703-a9c9-d754a3123282.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173812361-6cd59c75-9733-4901-96b1-8b1f306a5783.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173812415-361538fc-2bbc-47ab-80bf-27955b173ee7.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173812472-a0e5933d-d57d-4395-a254-b1a924e921ac.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173812532-12a77330-eb8b-4631-b199-7d131517cb7a.png"/>
