@@ -62,7 +62,7 @@
                                                                 name="region" type="text" class="form-control"
                                                                 value="{{ user.region }}" placeholder="Region"></div>
                                         </div>
-                                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                                        <div class="mt-5 text-center"><button style="font-size: medium;" class="btn btn-primary profile-button"
                                                         type="submit">Save
                                                         Profile</button></div>
                                 </div>
@@ -77,10 +77,10 @@
                                                         <p class="card-text">Appointment with {{data.name}} in
                                                                 {{data.date}} </p>
                                                         <div class="card-footer">
-                                                                <a href="{{ url_for('user_page', user_id=user.id) }}"
+                                                                <a style="font-size: medium; margin: 1%;" href="{{ url_for('user_page', user_id=user.id) }}"
                                                                         class="btn btn-primary profile-button"
                                                                         type="button">Appointment</a>
-                                                                <a href="{{ url_for('delete_doctor_appointment', appointment_id=data.id) }}"
+                                                                <a style="font-size: medium; margin: 1%;" href="{{ url_for('delete_doctor_appointment', appointment_id=data.id) }}"
                                                                         class="btn btn-danger" type="button">delete
                                                                         appointment</a>
                                                         </div>

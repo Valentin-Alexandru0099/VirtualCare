@@ -1,4 +1,5 @@
 import os
+from pydoc import doc
 from flask import Flask, render_template, url_for, request, redirect, session, flash
 from dotenv import load_dotenv
 from data import queries
@@ -123,6 +124,12 @@ def delete_doctor_appointment(appointment_id):
 def delete_patient_appointment(appointment_id):
     id = queries.delete_appointment(appointment_id, 'doctor_id')
     return redirect(url_for("doctor_page", doctor_id=id))
+
+@app.route("/doctors")
+def doctors_table():
+    doctors = queries.get_all("doctors")
+    return render_template("doctors_table.html", doctors=doctors)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
