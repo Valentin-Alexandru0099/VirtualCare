@@ -13,6 +13,13 @@ load_dotenv()
 @app.route("/", methods=["GET", "POST"])
 def main_page():
     doctors = queries.get_all("doctors")
+    if session:
+        print(session)
+        if session["doctor"] == False:
+            user = queries.get_user(session["id"])
+            print(user)
+            return render_template("index.html", doctors=doctors, user=user)
+
     return render_template("index.html", doctors=doctors)
 
 
@@ -46,6 +53,7 @@ def login():
                 session["id"] = user["id"]
                 session["username"] = user["username"]
                 session["emai"] = user["email"]
+                session["doctor"] = False
                 for doctor in doctors:
                     if session["username"] == doctor["username"]:
                         session["doctor"] = True
