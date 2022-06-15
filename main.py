@@ -1,4 +1,5 @@
 import os
+from pydoc import doc
 from flask import Flask, render_template, url_for, request, redirect, session, flash
 from dotenv import load_dotenv
 from data import queries
@@ -13,7 +14,14 @@ load_dotenv()
 @app.route("/", methods=["GET", "POST"])
 def main_page():
     doctors = queries.get_all("doctors")
-    return render_template("index2.html", doctors=doctors)
+    if session:
+        print(session)
+        if session["doctor"] == False:
+            user = queries.get_user(session["id"])
+            print(user)
+            return render_template("index.html", doctors=doctors, user=user)
+
+    return render_template("index.html", doctors=doctors)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -21,15 +29,15 @@ def register():
     if request.method == "POST" and (
         request.form["password"] == request.form["confirm-password"]
     ):
-        id = queries.count()
+        id = queries.count() + 1
         queries.add_account(
             request.form["username"],
             request.form["password"],
             request.form["email"],
             "users",
-            id + 1,
+            id,
         )
-        queries.add_patients(id + 1, request.form["username"], request.form["email"])
+        queries.add_patients(id, request.form["username"], request.form["email"])
         return redirect(url_for("register"))
     return render_template("register-login.html", register=True)
 
@@ -46,6 +54,7 @@ def login():
                 session["id"] = user["id"]
                 session["username"] = user["username"]
                 session["emai"] = user["email"]
+                session["doctor"] = False
                 for doctor in doctors:
                     if session["username"] == doctor["username"]:
                         session["doctor"] = True
@@ -87,7 +96,8 @@ def user_page(user_id):
 @app.route("/doctor/<int:doctor_id>", methods=["POST", "GET"])
 def doctor_page(doctor_id):
     patients = queries.doctor_appointments(doctor_id)
-    return render_template("doctor_page.html", doctor_id=doctor_id, patients=patients)
+    doctor = queries.get_dorctor(doctor_id)
+    return render_template("doctor_page.html", doctor=doctor, patients=patients)
 
 
 @app.route("/appointments", methods=["POST", "GET"])
@@ -95,8 +105,8 @@ def post_appointments():
     message = request.form.get("message")
     date = request.form.get("date")
     data = {
-        "p_id": session["id"],
-        "d_id": request.form.get("option"),
+        "patient_id": session["id"],
+        "doctor_id": request.form.get("option"),
         "message": message,
         "date": date,
     }
@@ -106,14 +116,20 @@ def post_appointments():
 
 @app.route("/delete-doctor-appointment/<int:appointment_id>", methods=["GET", "POST"])
 def delete_doctor_appointment(appointment_id):
-    id = queries.delete_appointment(appointment_id, 'p_id')
+    id = queries.delete_appointment(appointment_id, 'patient_id')
     return redirect(url_for("user_page", user_id=id))
 
 
 @app.route("/delete-patient-appointment/<int:appointment_id>", methods=["GET", "POST"])
 def delete_patient_appointment(appointment_id):
-    id = queries.delete_appointment(appointment_id, 'd_id')
+    id = queries.delete_appointment(appointment_id, 'doctor_id')
     return redirect(url_for("doctor_page", doctor_id=id))
+
+@app.route("/doctors")
+def doctors_table():
+    doctors = queries.get_all("doctors")
+    return render_template("doctors_table.html", doctors=doctors)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

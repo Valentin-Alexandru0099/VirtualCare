@@ -1,4 +1,4 @@
-{% extends "index2.html" %} {% block content %}
+{% extends "layout.html" %} {% block content %}
 <br /><br /><br /><br /><br />
 <form action="{{ url_for('user_page', user_id=user.id) }}" method="post">
         <div class="container rounded bg-white mt-5 mb-5">
@@ -62,25 +62,34 @@
                                                                 name="region" type="text" class="form-control"
                                                                 value="{{ user.region }}" placeholder="Region"></div>
                                         </div>
-                                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                                        <div class="mt-5 text-center"><button style="font-size: medium;" class="btn btn-primary profile-button"
                                                         type="submit">Save
                                                         Profile</button></div>
                                 </div>
                         </div>
                         <div class="col-md-4">
                                 <div class="p-3 py-5">
+                                        {% if app_data %}
                                         {% for data in app_data%}
                                         <div class="card" style="width: 18rem;">
                                                 <div class="card-body" style="text-align: center;">
                                                         <h5 class="card-title">Appointment Card</h5>
-                                                        <p class="card-text">Appointment with  {{data.name}}  in  {{data.date}} </p>
+                                                        <p class="card-text">Appointment with {{data.name}} in
+                                                                {{data.date}} </p>
                                                         <div class="card-footer">
-                                                                <a href="{{ url_for('user_page', user_id=user.id) }}" class="btn btn-primary profile-button" type="button">Appointment</a>
-                                                                <a href="{{ url_for('delete_doctor_appointment', appointment_id=data.id) }}" class="btn btn-danger" type="button">delete appointment</a>
+                                                                <a style="font-size: medium; margin: 1%;" href="{{ url_for('user_page', user_id=user.id) }}"
+                                                                        class="btn btn-primary profile-button"
+                                                                        type="button">Appointment</a>
+                                                                <a style="font-size: medium; margin: 1%;" href="{{ url_for('delete_doctor_appointment', appointment_id=data.id) }}"
+                                                                        class="btn btn-danger" type="button">delete
+                                                                        appointment</a>
                                                         </div>
                                                 </div>
                                         </div>
                                         {% endfor %}
+                                        {% else %}
+                                        <p>No Appointments...</p>
+                                        {% endif %}
                                 </div>
                         </div>
                 </div>
